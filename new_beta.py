@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord import Option
 bot = commands.Bot()
 import asyncio
-staff = 1000045473345835058
+staff = 943986930314530847
 token = ""
 
 """@bot.event
@@ -19,36 +19,7 @@ async def on_ready():
 
 @bot.event
 async def on_ready():
-    Channel = bot.get_channel(1000146340841521162)
-    
-    embed = discord.Embed(title="Get Whitelist",description="React here to get whitelist", color=0x00b6ff)
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/1000043217573650513/1000086130349330452/e.jpg")
-    embed.set_image(url="https://cdn.discordapp.com/attachments/983054815594700920/1000022850117304432/X.png")
-    Text= "**React to get whitelist**"
-    Moji = await Channel.send(embed=embed)
-    await Moji.add_reaction('🟢')
-@bot.event
-async def on_reaction_add(reaction, user):
-    Channel = bot.get_channel(1000146340841521162)
-    if reaction.message.channel.id != Channel.id:
-        return
-    if reaction.emoji == "🟢":
-      Role = discord.utils.get(user.guild.roles, name="Whitelisted")
-      await user.add_roles(Role)
-      embed= discord.Embed(
-			title="WHITELIST:",
-			color=0x00b6ff
-		)
-      user_id = "999408182101282856"
-      embed.add_field(name='WHITELISTER:',value=f"<@{user_id}>",inline=True)
-      embed.add_field(name='WHITELISTED:',value=f"{user.mention}",inline=True)
-      embed.add_field(name=' ‏‏‎',value="**Welcome to TUNISIAN ELITE ROLE PLAY**",inline=False)
-      embed.set_author(name=user.name,icon_url=user.avatar.url)
-      embed.set_thumbnail(url=user.display_avatar.url)
-      embed.set_image(url="https://cdn.discordapp.com/attachments/983054815594700920/1000022850117304432/X.png")
-      """embeds=discord.Embed(title="WHITELISTED",description=f"{user.mention} **got whitelisted by ‏‏‎{mention}\nwe hope you will enjoy your whitelist**", color=0x00b6ff)"""
-      channel = bot.get_channel(1000071971767341216)
-      await channel.send(embed=embed)
+	print("ready")
 
 
 
@@ -177,16 +148,16 @@ async def debug(ctx):
 async def whitelist(ctx,user: Option(discord.Member,"the person to whitelist",required=True,default=None)):
 	mention = ctx.author.mention
 	member = user
-	role = discord.utils.get(ctx.guild.roles, name="Whitelisted")
+	role = discord.utils.get(ctx.guild.roles, name="WHITELISTED")
 	await member.add_roles(role)
 
-	embed=discord.Embed(title="Success", description=f"**you have succesfully whitelisted **{user.mention}", color=0x00b6ff)
+	embed=discord.Embed(title="Success", description=f"**you have succesfully whitelisted **{user.mention}", color=0xc0b423)
 	await ctx.respond(embed=embed, delete_after=5)
 
 
 	embed= discord.Embed(
 			title="WHITELIST:",
-			color=0x00b6ff
+			color=0xc0b423
 		)
 	embed.add_field(name='WHITELISTER:',value=f"{mention}",inline=True)
 	embed.add_field(name='WHITELISTED:',value=f"{user.mention}",inline=True)
@@ -197,7 +168,7 @@ async def whitelist(ctx,user: Option(discord.Member,"the person to whitelist",re
 
 
 	"""embeds=discord.Embed(title="WHITELISTED",description=f"{user.mention} **got whitelisted by ‏‏‎{mention}\nwe hope you will enjoy your whitelist**", color=0x00b6ff)"""
-	channel = bot.get_channel(1000071971767341216)
+	channel = bot.get_channel(1000546285855703060)
 	await channel.send(embed=embed)
     
 	 
@@ -205,7 +176,7 @@ async def whitelist(ctx,user: Option(discord.Member,"the person to whitelist",re
 async def whitelist_error(ctx,error):
 	mention = ctx.author.mention
 	if isinstance(error, commands.MissingRole):
-		embed=discord.Embed(title="ERROR", description=f"**{mention} you do not have the role to whitelist**", color=0xff0000)
+		embed=discord.Embed(title="ERROR", description=f"**{mention} you do not have the role to whitelist**", color=0xc0b423)
 		await ctx.respond(embed=embed, delete_after=5)
 
 @commands.has_permissions(kick_members = True)
@@ -213,15 +184,15 @@ async def whitelist_error(ctx,error):
 async def ban(ctx,user: Option(discord.Member,"the person to ban",required=True,default=None),duration: Option(int,"the duration of the ban (hours)",required=True,default="No reason"),reason: Option(str,"the reason of the ban",required=False,default="No reason")):
 	print("1")
 	durations = str(int(duration) * 3600)
-	role = discord.utils.get(ctx.guild.roles, name="Blacklisted")
-	whitelist_role = discord.utils.get(ctx.guild.roles, name="Whitelisted")
+	role = discord.utils.get(ctx.guild.roles, name="📛┊Banned")
+	whitelist_role = discord.utils.get(ctx.guild.roles, name="WHITELISTED")
 	mention = ctx.author.mention
 	auth = ctx.author
 	print("2")
 
 	embeds= discord.Embed(
 			title="PUNICHEMENT:",
-			color=000000
+			color=0xc0b423
 		)
 	embeds.add_field(name='PUNICHER:',value=f"{mention}",inline=True)
 	embeds.add_field(name='TARGET:',value=f"{user.mention}",inline=True)
@@ -243,10 +214,10 @@ async def ban(ctx,user: Option(discord.Member,"the person to ban",required=True,
 		await user.add_roles(role)
 		print("new blacklisted role")
 
-	embed=discord.Embed(title="Success", description=f"**you have succesfully banned {user.mention} for reason:\n**{reason}", color=000000)
+	embed=discord.Embed(title="Success", description=f"**you have succesfully banned {user.mention} for reason:\n**{reason}", color=0xc0b423)
 	#embeds=discord.Embed(title="PUNICHEMENT",description=f" ‏‏‎ ‏‏‎ ‏‏‎ ‏‏‎ ‏‏‎ ‏‏‎ ‏‏‎ \n**PUNICHER**:  {mention}\n\n**PUNICHEMENT TYPE**: `  BAN  `\n\n**TARGET**:  {user.mention}\n\n**REASON**:  {reason}", color=0x000000)
 	await ctx.respond(embed=embed, delete_after=5)
-	channel = bot.get_channel(1000072382138036324)
+	channel = bot.get_channel(943987113324576778)
 	await channel.send(embed=embeds)
 
 	await asyncio.sleep(durations)
@@ -263,23 +234,23 @@ async def ban(ctx,user: Option(discord.Member,"the person to ban",required=True,
 async def ban_error(ctx,error):
 	mention = ctx.author.mention
 	if isinstance(error, commands.MissingPermissions):
-		embed=discord.Embed(title="ERROR", description=f"**you do not have the pemission to ban**", color=0xff0000)
+		embed=discord.Embed(title="ERROR", description=f"**you do not have the pemission to ban**", color=0xc0b423)
 		await ctx.respond(embed=embed, delete_after=5)
 
 @commands.has_permissions(kick_members = True)
 @bot.slash_command(description="unban someone")
 async def unban(ctx,user: Option(discord.Member,"the person to unban",required=True,default=None),reason: Option(str,"the reason of the unban",required=False,default="No reason")):
-	role = discord.utils.get(ctx.guild.roles, name="Blacklisted")
+	role = discord.utils.get(ctx.guild.roles, name="📛┊Banned")
 	mention = ctx.author.mention
 	await user.remove_roles(role)
 
-	embed=discord.Embed(title="Success", description=f"**you have succesfully revoked the ban from {user.mention} for reason:\n**{reason}", color=0x00b6ff)
+	embed=discord.Embed(title="Success", description=f"**you have succesfully revoked the ban from {user.mention} for reason:\n**{reason}", color=0xc0b423)
 	await ctx.respond(embed=embed, delete_after=5)
 
 
 	embeds= discord.Embed(
 			title="REVOKE:",
-			color=0x00b6ff
+			color=0xc0b423
 		)
 	embeds.add_field(name='REVOKER:',value=f"{mention}",inline=True)
 	embeds.add_field(name='USER:',value=f"{user.mention}",inline=True)
@@ -291,35 +262,35 @@ async def unban(ctx,user: Option(discord.Member,"the person to unban",required=T
 
 
 	#embeds=discord.Embed(title="REVOKE",description=f" ‏‏‎ ‏‏‎ ‏‏‎ ‏‏‎ ‏‏‎ ‏‏‎ ‏‏‎ \n**REVOKER**:  {mention}\n\n**REVOKED FROM**: `  BAN  `\n\n**TARGET**:  {user.mention}\n\n**REASON**:  {reason}", color=0x00b6ff)
-	channel = bot.get_channel(1000072405374480554)
+	channel = bot.get_channel(1000547091250159616)
 	await channel.send(embed=embeds)
 	
 @unban.error
 async def unban_error(ctx,error):
 	mention = ctx.author.mention
 	if isinstance(error, commands.MissingPermissions):
-		embed=discord.Embed(title="ERROR", description=f"**you do not have the permission to unban**", color=0xff0000)
+		embed=discord.Embed(title="ERROR", description=f"**you do not have the permission to unban**", color=0xc0b423)
 		await ctx.respond(embed=embed, delete_after=5)
 
 @commands.has_permissions(kick_members = True)
 @bot.slash_command(description="warn someone")
 async def warn(ctx,user: Option(discord.Member,"the person to warn",required=True,default=None),reason: Option(str,"the reason of the warn",required=False,default="No reason")):
 	member = user
-	channel = bot.get_channel(1000072382138036324)
-	role = discord.utils.get(ctx.guild.roles, name="Blacklisted")
-	whitelist_role = discord.utils.get(ctx.guild.roles, name="Whitelisted")
+	channel = bot.get_channel(943987111722360944)
+	role = discord.utils.get(ctx.guild.roles, name="📛┊Banned")
+	whitelist_role = discord.utils.get(ctx.guild.roles, name="WHITELISTED")
 	mention = ctx.author.mention
 	add_warn(user)
 	if check_warn(user) == "3":
 		print("3!!!!")
 		await member.add_roles(role)
 		await member.remove_roles(whitelist_role)
-		embed=discord.Embed(title="Success", description=f"**{user.mention} is now blacklisted for reason:\n**{reason}", color=0xff0000)
+		embed=discord.Embed(title="Success", description=f"**{user.mention} is now blacklisted for reason:\n**{reason}", color=0xc0b423)
 		await ctx.respond(embed=embed, delete_after=5)
 
 		embeds= discord.Embed(
 			title="PUNICHEMENT:",
-			color=0xff0000
+			color=0xc0b423
 		)
 		embeds.add_field(name='PUNICHER:',value=f"{mention}",inline=True)
 		embeds.add_field(name='PUNICHED:',value=f"{user.mention}",inline=True)
@@ -341,11 +312,11 @@ async def warn(ctx,user: Option(discord.Member,"the person to warn",required=Tru
 		rm_warn(user)
 		print("role removed")
 	else:
-		embed=discord.Embed(title="Success", description=f"**you have succesfully warned {user.mention} for reason:\n**{reason}", color=0xff0000)
+		embed=discord.Embed(title="Success", description=f"**you have succesfully warned {user.mention} for reason:\n**{reason}", color=0xc0b423)
 		await ctx.respond(embed=embed, delete_after=5)
 		embeds= discord.Embed(
 			title="PUNICHEMENT:",
-			color=0xff0000
+			color=0xc0b423
 		)
 		embeds.add_field(name='PUNICHER:',value=f"{mention}",inline=True)
 		embeds.add_field(name='PUNICHED:',value=f"{user.mention}",inline=True)
@@ -362,7 +333,7 @@ async def warn(ctx,user: Option(discord.Member,"the person to warn",required=Tru
 async def warn_error(ctx,error):
 	mention = ctx.author.mention
 	if isinstance(error, commands.MissingPermissions):
-		embed=discord.Embed(title="ERROR", description=f"**you do not have the permission to warn**", color=0xff0000)
+		embed=discord.Embed(title="ERROR", description=f"**you do not have the permission to warn**", color=0xc0b423)
 		await ctx.respond(embed=embed, delete_after=5)
 
 
@@ -382,13 +353,13 @@ async def unwarn(ctx,user: Option(discord.Member,"the person to unwarn",required
 	if check_warn(user) == "3":
 		rm_warn(user)
 		await member.remove_roles(role)
-		embed=discord.Embed(title="Success", description=f"**{user.mention} is now out of blacklist for reason:\n**{reason}", color=0xff0000)
+		embed=discord.Embed(title="Success", description=f"**{user.mention} is now out of blacklist for reason:\n**{reason}", color=0xc0b423)
 		await ctx.respond(embed=embed, delete_after=5)
-		channel = bot.get_channel(1000072405374480554)
+		channel = bot.get_channel(1000547091250159616)
 
 		embeds= discord.Embed(
 									title="REVOKE:",
-									color=0x00b6ff
+									color=0xc0b423
 								)
 		embeds.add_field(name='REVOKER:',value=f"{mention}",inline=True)
 		embeds.add_field(name='USER:',value=f"{user.mention}",inline=True)
@@ -403,11 +374,11 @@ async def unwarn(ctx,user: Option(discord.Member,"the person to unwarn",required
 		return
 	else:
 		rm_warn(user)
-		embed=discord.Embed(title="Success", description=f"**you have succesfully unwarned {user.mention} for reason:\n**{reason}", color=0x00b6ff)
+		embed=discord.Embed(title="Success", description=f"**you have succesfully unwarned {user.mention} for reason:\n**{reason}", color=0xc0b423)
 		await ctx.respond(embed=embed, delete_after=5)
 		embeds= discord.Embed(
 									title="REVOKE:",
-									color=0x00b6ff
+									color=0xc0b423
 								)
 		embeds.add_field(name='REVOKER:',value=f"{mention}",inline=True)
 		embeds.add_field(name='USER:',value=f"{user.mention}",inline=True)
@@ -420,7 +391,7 @@ async def unwarn(ctx,user: Option(discord.Member,"the person to unwarn",required
 
 
 		#embeds=discord.Embed(title="REVOKE",description=f" ‏‏‎ ‏‏‎ ‏‏‎ ‏‏‎ ‏‏‎ ‏‏‎ ‏‏‎ \n**REVOKER**:  {mention}\n\n**REMOVED**: `  1 WARN  `\n\n**USER**:  {user.mention}\n\n**REASON**:  {reason}", color=0x00b6ff)
-		channel = bot.get_channel(1000072405374480554)
+		channel = bot.get_channel(1000547091250159616)
 		await channel.send(embed=embeds)
 	
 
@@ -430,7 +401,7 @@ async def unwarn(ctx,user: Option(discord.Member,"the person to unwarn",required
 async def unwarn_error(ctx,error):
 	mention = ctx.author.mention
 	if isinstance(error, commands.MissingPermissions):
-		embed=discord.Embed(title="ERROR", description=f"**you do not have the permission to unwarn**", color=0xff0000)
+		embed=discord.Embed(title="ERROR", description=f"**you do not have the permission to unwarn**", color=0xc0b423)
 		await ctx.respond(embed=embed, delete_after=5)
 
 
@@ -440,7 +411,7 @@ async def warn_check(ctx,user: Option(discord.Member,"the person that you want t
 
 	a = check_warn(user)
 
-	embed=discord.Embed(title=f"{user.name}", description=f"**{user.mention}has actually {a} warn(s)**", color=0x00b6ff)
+	embed=discord.Embed(title=f"{user.name}", description=f"**{user.mention}has actually {a} warn(s)**", color=0xc0b423)
 	await ctx.respond(embed=embed, delete_after=20)
 
     
